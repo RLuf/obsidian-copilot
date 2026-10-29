@@ -1,0 +1,42 @@
+{
+  "upstream": "logancyang/obsidian-copilot",
+  "branch": "master",
+  "checked_at": "2026-10-29",
+  "entries": [
+    {
+      "translation": "skills/copilot-youtube-transcript-ptbr/SKILL.md",
+      "source": "src/builtinSkills/builtinSkills.ts",
+      "source_sha": "e3c91bff622adcadfa387ecbb220fbba8486189b",
+      "status": "atualizada",
+      "upstream_sha": "e3c91bff622adcadfa387ecbb220fbba8486189b"
+    },
+    {
+      "translation": "skills/copilot-youtube-transcript-ptbr/SKILL.md",
+      "source": "src/builtinSkills/howToRunSection.ts",
+      "source_sha": "00f06e002b9b80787a467be0f95c4447a961e19d",
+      "status": "atualizada",
+      "upstream_sha": "00f06e002b9b80787a467be0f95c4447a961e19d"
+    },
+    {
+      "translation": "skills/copilot-fetch-x-ptbr/SKILL.md",
+      "source": "src/builtinSkills/builtinSkills.ts",
+      "source_sha": "e3c91bff622adcadfa387ecbb220fbba8486189b",
+      "status": "atualizada",
+      "upstream_sha": "e3c91bff622adcadfa387ecbb220fbba8486189b"
+    },
+    {
+      "translation": "skills/copilot-fetch-x-ptbr/SKILL.md",
+      "source": "src/builtinSkills/howToRunSection.ts",
+      "source_sha": "00f06e002b9b80787a467be0f95c4447a961e19d",
+      "status": "atualizada",
+      "upstream_sha": "00f06e002b9b80787a467be0f95c4447a961e19d"
+    },
+    {
+      "translation": "skills/obsidian-bases-ptbr/SKILL.md",
+      "source": "src/builtinSkills/obsidianSkills.ts",
+      "source_sha": "9198962609ac852d35c59ef35dd5196802d45b4d",
+      "status": "atualizada",
+      "upstream_sha": "9198962609ac852d35c59ef35dd5196802d45b4d"
+    }
+  ]
+}
