@@ -1,0 +1,52 @@
+name: Índice pt-BR (traduções)
+
+# Confere se os arquivos de origem das traduções pt-BR mudaram no upstream.
+# Se mudaram, atualiza docs/pt-BR/index.json + README.md e abre um PR,
+# pedindo revisão do Jules (e Copilot/Gemini) antes do merge.
+
+on:
+  schedule:
+    - cron: "17 9 * * 1" # segunda-feira, 09:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: ptbr-index
+  cancel-in-progress: false
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Atualizar índice
+        id: idx
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python .github/scripts/ptbr_index.py
+
+      - name: Abrir PR e chamar revisores
+        if: steps.idx.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STALE: ${{ steps.idx.outputs.stale }}
+        run: |
+          BR="bot/ptbr-index-$(date -u +%Y%m%d)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BR"
+          git add docs/pt-BR/index.json docs/pt-BR/README.md
+          git commit -m "docs(pt-BR): atualiza índice de traduções"
+          git push -u origin "$BR"
+          URL=$(gh pr create --base "${{ github.event.repository.default_branch }}" --head "$BR" \
+            --title "docs(pt-BR): índice de traduções atualizado" \
+            --body "Origem mudou no upstream. Traduções desatualizadas: ${STALE:-nenhuma}. Atualize o texto e o \`source_sha\` em \`docs/pt-BR/index.json\` antes do merge.")
+          gh pr comment "$URL" --body "@jules por favor revise este PR antes do merge (traduções pt-BR). cc @copilot @gemini-code-assist"

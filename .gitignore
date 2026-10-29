@@ -40,3 +40,11 @@ copilot/acp-frames.old.ndjson
 # Models.dev catalog cache (disposable runtime cache under .copilot/)
 .copilot/model-catalog-cache.json
 .otacon/
+
+# historico local - nunca versionar
+archived/
+archive/
+arquivado*/
+historico/
+histórico/
+_archive*/
